@@ -15,6 +15,7 @@
 //   	header("location: login.php");
 //   }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -26,10 +27,6 @@
 </head>
 
 <body>
-
-	<div class="header container">
-		<h2>Home Page</h2>
-	</div>
 
 	<!-- Beginning of Fuel Calculator -->
 
@@ -85,7 +82,6 @@
 
 	</div>
 
-	<!-- Backend for fuel calculator -->
 
 	<div class="content">
 		<!-- notification message -->
@@ -107,7 +103,16 @@
 		<p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
 		<?php endif ?>
 	</div>
-
 </body>
 
 </html>
+
+
+<!-- Backend for fuel calculator -->
+
+<?php
+
+
+
+
+?>
