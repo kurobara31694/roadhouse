@@ -1,26 +1,6 @@
 <!-- Critical -->
 <!-- User Profile and the Fuel Calculator -->
 
-
-<?php 
-//   session_start(); 
-
-//   if (!isset($_SESSION['username'])) {
-//   	$_SESSION['msg'] = "You must log in first";
-//   	header('location: login.php');
-//   }
-//   if (isset($_GET['logout'])) {
-//   	session_destroy();
-//   	unset($_SESSION['username']);
-//   	header("location: login.php");
-//   }
-?>
-
-
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -42,13 +22,13 @@
 			<div class="container" style="margin-top: 40px">
 
 				<p>Requested Number of Gallons</p>
-				<input class="form-control" type="text" name="gallons">
+				<input class="form-control" type="text" id="numGallons" name="numGallons">
 
-				<div id="date-select">
+				<div id="date_value" name="date_value">
 					<h3> Select Delivery Date</h3>
 
 					<!-- Select Month -->
-					<p id="input-field">Choose the month:</p>
+					<p id="month_value" name="month_value">Choose the month:</p>
 					<select class="form-control">
 						<option selected value="1">January</option>
 						<option value="2">February</option>

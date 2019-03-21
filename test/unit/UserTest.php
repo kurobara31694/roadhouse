@@ -14,5 +14,15 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($user->getUsername(), 'jojo222');
 
     }
+
+    public function testCalc(){
+
+        $fuelCalc = new \App\Models\FuelCalc;
+        
+        $fuelCalc->setNumGallons('13');
+
+        $this->assertEquals($fuelCalc->getNumGallons(), '13');
+
+    }
 }
 
