@@ -8,12 +8,11 @@ class UserTest extends \PHPUnit\Framework\TestCase
         // are under app.
         $user = new \App\Models\User;
 
-        // Testing with sameple name
+        // Testing with sample name
         $user->setUsername('jojo222');
 
         $this->assertEquals($user->getUsername(), 'jojo222');
 
-        
     }
 }
 
