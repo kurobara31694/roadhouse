@@ -7,10 +7,10 @@
     </testsuites>
 
 
-    <logging>
+    <!-- <logging>
         <log type="coverage-clover" target="codeCoverage/_reports/logs/clover.xml" />
-        <!-- <log type="coverage-html" target="codeCoverage/_reports/coverage"
+        <log type="coverage-html" target="codeCoverage/_reports/coverage"
             lowUpperBound="35" highLowerBound="70" />
-        <log type="testdox-text" target="codeCoverage/_reports/testdox/executed.txt" /> -->
-    </logging>
+        <log type="testdox-text" target="codeCoverage/_reports/testdox/executed.txt" />
+    </logging> -->
 </phpunit>

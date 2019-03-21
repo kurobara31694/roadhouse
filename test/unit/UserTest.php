@@ -15,6 +15,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
 
     }
 
+
     public function testCalc(){
 
         $fuelCalc = new \App\Models\FuelCalc;
@@ -23,6 +24,10 @@ class UserTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals($fuelCalc->getNumGallons(), '13');
 
-    }
-}
 
+        $fuelCalc->setMonth('1');
+
+        $this->assertEquals($fuelCalc->getMonth(), '1');
+
+    }   
+}
