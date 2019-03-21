@@ -1,6 +1,6 @@
 <?php
 
-class EmailTest extends \PHPUnit\Framework\TestCase
+class FormInputTest extends \PHPUnit\Framework\TestCase
 {
     public function testCanBeCreatedFromValidEmailAddress(): void
     {
@@ -25,4 +25,3 @@ class EmailTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-
