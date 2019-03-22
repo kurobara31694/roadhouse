@@ -65,7 +65,7 @@ class FuelCalc {
     }
 
 	public function getYear(){
-        return '2009';
+        return '2008';
 		// return $this->chooseYear;
     }
 

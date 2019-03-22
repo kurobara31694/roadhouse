@@ -1,5 +1,26 @@
 <!-- Critical -->
 <!-- User Profile and the Fuel Calculator -->
+<?php
+include_once(app/Models/User.php);
+
+// Form Validation
+$numGallons = $chooseMonth = $chooseDay = $chooseYear = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $numGallons = test_input($_POST["numGallons"]);
+  $chooseMonth = test_input($_POST["chooseMonth"]);
+  $chooseDay = test_input($_POST["chooseDay"]);
+  $chooseYear = test_input($_POST["chooseYear"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -55,9 +76,14 @@
 
 				</div>
 
-				<button class="btn btn-success" type="button">Calculate </button>
+				<button class="btn btn-success" name="Calculate" type="submit">Calculate </button>
+
 
 				<h2 style="margin-top: 25px"> Total Amount Due: </h2>
+
+				<!-- This where the calculation will take place -->
+				<!-- Should be PHP script -->
+				
 				<h2>$</h2>
 
 				<button class="btn btn-primary" type="button">Order History</button>
