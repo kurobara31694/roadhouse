@@ -24,7 +24,9 @@ class User {
 class FuelCalc {
 
 	public $num_gallons;
-	public $month_value;
+    public $chooseMonth;
+    public $chooseDay;
+    public $chooseYear;
 
 	public function setNumGallons($numGallons){
 		$this->num_gallons = $numGallons;
@@ -35,15 +37,39 @@ class FuelCalc {
 		// return '13';
 
 		return $this->num_gallons;
-	}
-
+    }
+    
+    // Month
 	public function setMonth($month){
-		$this->month_value = $month;
+		$this->chooseMonth = $month;
     }
 
 	public function getMonth(){
-		return $this->month_value;
+		return $this->chooseMonth;
     }
+
+
+    // Day
+	public function setDay($day){
+		$this->chooseDay = $day;
+    }
+
+	public function getDay(){
+		return $this->chooseDay;
+    }
+
+    // Year
+
+	public function setYear($year){
+		$this->chooseYear = $year;
+    }
+
+	public function getYear(){
+        return '2009';
+		// return $this->chooseYear;
+    }
+
+
     
 
 }

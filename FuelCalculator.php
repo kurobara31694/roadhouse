@@ -28,7 +28,7 @@
 					<h3> Select Delivery Date</h3>
 
 					<!-- Select Month -->
-					<p id="month_value" name="month_value">Choose the month:</p>
+					<p id="chooseMonth" name="chooseMonth">Choose the month:</p>
 					<select class="form-control">
 						<option selected value="1">January</option>
 						<option value="2">February</option>
@@ -45,13 +45,13 @@
 					</select>
 
 					<!-- Select Day -->
-					<p id="input-field" >Enter the Day:</p>
+					<p>Enter the Day:</p>
 					
-					<input name="day" type="text" class="form-control" placeholder="23">
+					<input name="chooseDay" id="chooseDay" type="text" class="form-control" placeholder="23">
 
 					<!-- Enter year -->
-					<p id="input-field" >Enter the year:</p>
-					<input name="year" type="text" class="form-control" placeholder="2019">
+					<p>Enter the year:</p>
+					<input name="chooseYear" id="chooseYear" type="text" class="form-control" placeholder="2019">
 
 				</div>
 
