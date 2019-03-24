@@ -1,3 +1,4 @@
 User
  [x] Username
+ [x] Calc
 

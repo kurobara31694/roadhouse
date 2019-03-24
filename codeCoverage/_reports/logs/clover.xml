@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1553401520">
+  <project timestamp="1553401520">
+    <file name="/home/nabil/DevSpace/apacheProjects.test/roadhouse/test/unit/UserTest.php">
+      <class name="UserTest" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+      </class>
+      <line num="5" type="method" name="testUsername" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="9" type="stmt" count="1"/>
+      <line num="12" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="1"/>
+      <line num="19" type="method" name="testCalc" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <metrics loc="47" ncloc="33" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+    </file>
+    <metrics files="1" loc="47" ncloc="33" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
+  </project>
+</coverage>
