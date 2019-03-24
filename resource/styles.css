@@ -17,9 +17,6 @@ h1 {
     font-size: 3em;
 }
 
-h2 {
-    font-size: 2em;
-}
 
 input, button {
     font-size: 1.5em;
@@ -55,6 +52,12 @@ button {
 .errorMsg {
     font-weight: bold;
     color: red;
+}
+
+#welcome {
+    font-size: 4em;
+    color: orangered;
+    margin-bottom: 25px;
 }
 /* Login */
 

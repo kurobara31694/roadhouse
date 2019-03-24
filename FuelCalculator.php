@@ -48,13 +48,18 @@ function test_input($data) {
 	<!-- Beginning of Fuel Calculator -->
 
 	<div class="container" id="main">
-		<h1>Enter information below</h1>
+
+		  
+  		<h1 id="welcome">Hello, User.</h1>  	  
+	
 
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form-group">
 			<div class="container" style="margin-top: 40px">
 
+		<h2>Enter information below</h2>
+
 				<label>Requested Number of Gallons</label>
-				<input class="form-control" type="text" id="numGallons" name="numGallons" required>
+				<input class="form-control" type="text" id="numGallons" name="numGallons" required placeholder="This must be a number">
 				<span class="errorMsg"> <?php echo $errorMessage;?></span>
 				<br><br>
 
@@ -113,13 +118,3 @@ function test_input($data) {
 </body>
 
 </html>
-
-
-<!-- Backend for fuel calculator -->
-
-<?php
-
-
-
-
-?>
