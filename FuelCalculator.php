@@ -17,16 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 		// Checking if the input is numeric
 		if(!preg_match("/^[0-9]*$.", $numGallons)){
-			$errorMessage = "Only numbers allowed, dumbass.";
+			$errorMessage = "Only numbers allowed.";
 		}
 	
-		elseif(strlen($numGallons)<4){
-			$errorMessage = "Error: Order limited to only 999 gallons, asshole.";
-		}
-	
-		else {
-			echo 'Success';
-		}
 	}
 
 }
