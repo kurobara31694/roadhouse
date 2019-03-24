@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1553401520">
-  <project timestamp="1553401520">
+<coverage generated="1553457781">
+  <project timestamp="1553457781">
     <file name="/home/nabil/DevSpace/apacheProjects.test/roadhouse/test/unit/UserTest.php">
       <class name="UserTest" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
