@@ -1,4 +1,5 @@
 User
  [x] Username
+ [x] Register
  [x] Calc
 

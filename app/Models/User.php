@@ -4,6 +4,11 @@ namespace App\Models;
 
 class User {
     public $user_name;
+    public $fullname;
+    private $password;
+    private $state;
+    private $zip;
+    private $address;
 
     public function setUsername($username){
         $this->user_name = $username;
@@ -19,6 +24,115 @@ class User {
         //this should also pass.
         return $this->user_name;
     }
+
+    public function setFullname($fname){
+        $this->fullname = $fname;
+    }
+
+    public function getFullname(){
+
+        return $this->fullname;
+    }
+
+    public function setPass($pname){
+        $this->password = $pname;
+    }
+
+    public function getPass(){
+
+        return $this->password;
+    }
+
+    public function setState($sname){
+        $this->state = $sname;
+    }
+
+    public function getState(){
+
+        return $this->state;
+    }
+
+    public function setZip($zname){
+        $this->zip = $zname;
+    }
+
+    public function getZip(){
+
+        return $this->zip;
+    }
+    public function setAdd($Aname){
+        $this->address = $Aname;
+    }
+
+    public function getAdd(){
+
+        return $this->address;
+    }
+}
+
+class register{
+
+
+    public $user_name;
+    public $fullname;
+    private $password;
+    private $state;
+    private $zip;
+    private $address;
+
+    public function setUsername($username){
+        $this->user_name = $username;
+    }
+
+    public function getUsername(){
+
+        return $this->user_name;
+    }
+
+    public function setFullname($fname){
+        $this->fullname = $fname;
+    }
+
+    public function getFullname(){
+
+        return $this->fullname;
+    }
+
+    public function setPass($pname){
+        $this->password = $pname;
+    }
+
+    public function getPass(){
+
+        return $this->password;
+    }
+
+    public function setState($sname){
+        $this->state = $sname;
+    }
+
+    public function getState(){
+
+        return $this->state;
+    }
+
+    public function setZip($zname){
+        $this->zip = $zname;
+    }
+
+    public function getZip(){
+
+        return $this->zip;
+    }
+    public function setAdd($Aname){
+        $this->address = $Aname;
+    }
+
+    public function getAdd(){
+
+        return $this->address;
+    }
+
 }
 
 class FuelCalc {
@@ -68,8 +182,5 @@ class FuelCalc {
         return '2008';
 		// return $this->chooseYear;
     }
-
-
-    
 
 }
