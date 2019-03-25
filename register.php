@@ -73,7 +73,7 @@ function test_input($data) {
       <h1>Complete Your Profile</h1>
 
       <p> Full Name</p>
-      <input class="form-control" type="text" name="fullname" placeholder="Please enter full name. Ex:Bill B. Baggins">
+      <input class="form-control" type="text" name="fullname" placeholder="Please enter full name. Ex: Bill B. Baggins">
       <span class="errorMsg"> <?php echo $nameErr;?></span>
       <p> Address</p>
       <input class="form-control" type="text" name="address1" placeholder="Please enter address. Ex:123 Gondor Dr.">
