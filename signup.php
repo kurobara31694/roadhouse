@@ -64,7 +64,7 @@ function test_input($data) {
           <small id="help-text" class="form-text text-muted">Please enter at least 5-10 characters.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary" action="register.php">Sign Up</button>
       </form>
       <a href="Login.html">Have an account? Sign in!</a>
     </div>

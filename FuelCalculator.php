@@ -63,7 +63,6 @@ function test_input($data) {
 				<span class="errorMsg"> <?php echo $errorMessage;?></span>
 				<br><br>
 
-
 				<div id="date_value" name="date_value">
 					<h3> For Delivery Date</h3>
 
