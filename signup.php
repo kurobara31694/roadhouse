@@ -1,5 +1,7 @@
 
 <?php
+
+include_once('db_conn.php');
 // define variables and set to empty values
 $emailErr = "";
 $email = "";
@@ -66,7 +68,7 @@ function test_input($data) {
 
         <button type="submit" class="btn btn-primary">Sign Up</button>
       </form>
-      <a href="Login.html">Have an account? Sign in!</a>
+      <a href="Login.php">Have an account? Sign in!</a>
     </div>
   </div>
 
