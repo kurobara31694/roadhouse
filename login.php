@@ -36,7 +36,7 @@ include_once('db_conn.php');
             <label>Username</label>
             <input type="username" id="input-field" class="form-control" placeholder="Enter username" name="username"required>
             <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
-            <span class="errorMsg"> <?php echo $errMsg;?></span>
+            
           </div>
 
           <div class="form-group">
@@ -60,7 +60,8 @@ include_once('db_conn.php');
 <!-- User Logs in here -->
 <?php
 include_once(app/Models/User.php);
-include_once('db_conn.php');
+include_once('db_conn.php');k
+
 // Form Validation
 
 
