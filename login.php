@@ -45,7 +45,7 @@ include_once('db_conn.php');
             <span class="errorMsg"> <?php echo $errMsg;?></span>
           </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" name="login_user">Submit</button>
       </form>
       <!-- Section that takes them to sign up -->
       <a href="signup.php">Don't have an accout? Sign Up!</a>
@@ -60,10 +60,9 @@ include_once('db_conn.php');
 <!-- User Logs in here -->
 <?php
 include_once(app/Models/User.php);
-
+include_once('db_conn.php');
 // Form Validation
-$errMsg = "";
-$username = $password = "";
+
 
 if (isset($_POST['login_user'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
