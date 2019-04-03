@@ -54,6 +54,7 @@ function test_input($data) {
 
     <div class="container" id="login-section">
       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+        <?php include('errors.php');?>
         <div class="form-group">
           <label>Username</label>
           <input type="username" id="input-field" class="form-control" placeholder="johndoe95@aol.com">
