@@ -40,7 +40,7 @@ if(isset($_POST['signup'])){
     //if no errors then we can do stuff
     if(count($error)==0){
         $query = "INSERT INTO log (user_name,full_name,password,address,city,state,zip) VALUES('$username','','$password','','','','')";
-        mysqli_query($dbconn,$query);
+        
 
         if ($dbconn->query($query) == TRUE) {
           echo "New record created successfully";
