@@ -37,6 +37,7 @@ include_once('db_conn.php');
 
          
       <a href="login.php">Don't wanna be here? LEAVE!</a>
+      <a href="register.php">wanna register more information?</a>
     </div>
 
   </div>

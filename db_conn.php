@@ -5,7 +5,11 @@ session_start();
 $username = "";
 
 $password = "";
-
+$fullname="";
+$address1="";
+$city="";
+$state="";
+$zipcode="";
 $error=array();
 // Create connection
 $dbconn = mysqli_connect('localhost', 'root', '','ash');
@@ -47,7 +51,7 @@ if(isset($_POST['signup'])){
         $_SESSION['user_name']= $username;
         $_SESSION['sucessful']= "Yall are logged in now yehaw";
         //echo "yehaw?";
-        //header('location: register.php');
+        header('location: register.php');
     }
 }
 
@@ -74,8 +78,7 @@ if (isset($_POST['login_user'])) {
   
       printf("Result set has %d rows.\n", $row_cnt);
   
-      /* close result set */
-      //$result->close();
+      
      }
      echo "here comes the count: ";
      print_r($row_cnt);
@@ -92,6 +95,66 @@ if (isset($_POST['login_user'])) {
 }
 
 //if we want somebody to be able to register thier information
+if (isset($_POST['register'])) {
+  $fullname = mysqli_real_escape_string($dbconn, $_POST['fullname']);
+  $address1 = mysqli_real_escape_string($dbconn, $_POST['address1']);
+  $city = mysqli_real_escape_string($dbconn, $_POST['city']);
+  $state = mysqli_real_escape_string($dbconn, $_POST['state']);
+  $zipcode = mysqli_real_escape_string($dbconn, $_POST['zipcode']);
+ 
 
+  if (empty($fullname)) {
+  	array_push($error, "name is required");
+  }
+  if (empty($city)) {
+  	array_push($error, "city is required");
+  }
+  if (empty($address1)) {
+  	array_push($error, "address is required");
+  }
+  if (empty($state)) {
+  	array_push($error, "state is required");
+  }
+  if (empty($zipcode)) {
+  	array_push($error, "zipcode is required");
+  }
+  if (count($error) == 0) {
+    $username=$_SESSION['user_name'];
+   
+    $result='';
+    $row_cnt='';
+    if ($result = $dbconn->query("SELECT * FROM log WHERE user_name='$username' ")) {
+
+      /* determine number of rows result set */
+      $row_cnt = $result->num_rows;
+  
+      printf("Result set has %d rows.\n", $row_cnt);
+  
+      
+    }
+     
+
+  	if ($row_cnt == 1) {
+  	  $_SESSION['user_name'] = $username;
+      
+      $query = " UPDATE log 
+      SET full_name='$fullname',address='$address1',city='$city',state='$state', zip= '$zipcode'  
+      WHERE user_name= '$username'";
+        mysqli_query($dbconn,$query);
+
+        if ($dbconn->query($query) == TRUE) {
+          echo "New record created successfully";
+          } else {
+          echo "Error: " . $query . "<br>" . $dbconn->error;
+         }
+
+
+  	  header('location: wel.php');
+  	 }else {
+      array_push($error, "Wrong username/password combination");
+      echo "          ";
+  	}
+  }
+}
 
 ?>
