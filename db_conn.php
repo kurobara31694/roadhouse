@@ -9,7 +9,11 @@ $password = "";
 $error=array();
 // Create connection
 $dbconn = mysqli_connect('localhost', 'root', '','ash');
-
+//check the connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 //we want to signup first so we would have a user 
 //input thier email and password
 if(isset($_POST['signup'])){
@@ -24,8 +28,9 @@ if(isset($_POST['signup'])){
     $user = mysqli_fetch_assoc($result);
     
     if ($user) { // if user exists
-      if ($user['username'] === $username) {
+      if ($user['user_name'] == $username) {
         array_push($error, "username already in database");
+        echo
       }
     } 
     //if no errors then we can do stuff
