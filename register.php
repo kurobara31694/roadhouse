@@ -1,52 +1,5 @@
 <!-- User Registration -->
 <?php
-include_once(app/Models/User.php);
-include_once('db_conn.php');
-// Form Validation
-$fullname = $address = $city = $state = $zip= "";
-$nameErr = $zErr= "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["fullname"])) {
-	  $nameErr = "Company Name is required";
-	} else {
-	  $name = test_input($_POST["fullname"]);
-	  // check if name only contains letters and whitespace
-	  if (!preg_match("/^[a-zA-Z ]*$/",$fullname)) {
-		$nameErr = "Only letters and white space allowed"; 
-	  }
-	}
-	
-	if (empty($_POST["address"])) {
-	  $nameErr = "address is required";
-  }
-  if (empty($_POST["state"])) {
-	  $nameErr = "state is required";
-  }
-  if (empty($_POST["city"])) {
-	  $nameErr = "City is required";
-	}
-	  
-	if (empty($_POST["zipcode"])) {
-	  $zip = "";
-	} else {
-	  $zip = test_input($_POST["zipcode"]);
-	  
-	  if (!preg_match("/^[0-9]*$.",$zip)) {
-		$zErr = "Invalid zipcode"; 
-	  }
-	}
-  		
-  }
-
-function test_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-  }
-
-
 ?>
 <!doctype html>
 
@@ -74,7 +27,7 @@ function test_input($data) {
 
       <p> Full Name</p>
       <input class="form-control" type="text" name="fullname" placeholder="Please enter full name. Ex: Bill B. Baggins">
-      <span class="errorMsg"> <?php echo $nameErr;?></span>
+      
       <p> Address</p>
       <input class="form-control" type="text" name="address1" placeholder="Please enter address. Ex:123 Gondor Dr.">
       
@@ -87,7 +40,7 @@ function test_input($data) {
 
       <p>Zipcode</p>
       <input  class="form-control" type="text" name=zipcode>
-      <span class="errorMsg"> <?php echo $zErr;?></span>
+      
       <button style="margin-top: 25px" class="btn btn-primary" type="button">Submit</button>
 
     </div>

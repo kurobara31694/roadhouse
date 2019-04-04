@@ -2,6 +2,8 @@
 <?php
 
 
+include_once('db_conn.php');
+
 // define variables and set to empty values
 //$emailErr = "";
 //$email = "";
@@ -55,13 +57,13 @@
     <div class="container" id="login-section">
       <form method="post" action="signup.php" >
         
-        <div class="form-group">
+        <div class="input-group">
           <label>Username</label>
           <input type="username" id="input-field" name="username" class="form-control" placeholder="johndoe95@aol.com">
           <small id="help-text" class="form-text text-muted">Please make sure this is the correct email.</small>
           
         </div>
-        <div class="form-group">
+        <div class="input-group">
           <label>Password</label>
           <input type="password" id="input-field" class="form-control" name= "password" placeholder="************">
           <small id="help-text" class="form-text text-muted">Please enter at least 5-10 characters.</small>
@@ -77,6 +79,3 @@
 </body>
 
 </html>
-<?php
-include_once('db_conn.php');
-?>

@@ -8,7 +8,7 @@ $password = "";
 
 $error=array();
 // Create connection
-$dbconn = mysqli_connect('localhost', 'root', '', 'ash');
+$dbconn = new connect('localhost', 'root', '', 'ash');
 
 //we want to signup first so we would have a user 
 //input thier email and password
@@ -19,7 +19,7 @@ if(isset($_POST['signup'])){
     if (empty($username)) { array_push($errors, "Username is required"); }
     if (empty($password)) { array_push($errors, "Password is required"); }
 
-    $user_check_query = "SELECT * FROM login WHERE username='$username' LIMIT 1";
+    $user_check_query = "SELECT * FROM login WHERE user_name='$username' LIMIT 1";
     $result = mysqli_query($dbconn, $user_check_query);
     $user = mysqli_fetch_assoc($result);
     
@@ -30,10 +30,10 @@ if(isset($_POST['signup'])){
     } 
     //if no errors then we can do stuff
     if(count($error)==0){
-        $query="INSERT INTO login (username,password)
+        $query="INSERT INTO login (user_name,password)
         VALUES('$username','$password')";
         mysqli_query($dbconn,$query);
-        $_SESSION['username']=$username;
+        $_SESSION['user_name']=$username;
         $_SESSION['sucessful']="Yall are logged in now yehaw";
         header('location: register.php');
     }
