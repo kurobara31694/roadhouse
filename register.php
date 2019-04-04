@@ -1,5 +1,7 @@
 <!-- User Registration -->
 <?php
+include_once('db_conn.php');
+
 ?>
 <!doctype html>
 

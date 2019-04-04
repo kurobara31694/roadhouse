@@ -30,17 +30,24 @@ if(isset($_POST['signup'])){
     if ($user) { // if user exists
       if ($user['user_name'] == $username) {
         array_push($error, "username already in database");
-        echo
+        echo "user name already taken, pick another."; 
       }
     } 
     //if no errors then we can do stuff
     if(count($error)==0){
-        $query="INSERT INTO log (user_name,password)
-        VALUES('$username','$password')";
+        $query = "INSERT INTO log (user_name,full_name,password,address,city,state,zip) VALUES('$username','','$password','','','','')";
         mysqli_query($dbconn,$query);
-        $_SESSION['user_name']=$username;
-        $_SESSION['sucessful']="Yall are logged in now yehaw";
-        header('location: register.php');
+
+        if ($dbconn->query($query) == TRUE) {
+          echo "New record created successfully";
+          } else {
+          echo "Error: " . $query . "<br>" . $dbconn->error;
+         }
+
+        $_SESSION['user_name']= $username;
+        $_SESSION['sucessful']= "Yall are logged in now yehaw";
+        echo "yehaw?";
+        //header('location: register.php');
     }
 }
 
