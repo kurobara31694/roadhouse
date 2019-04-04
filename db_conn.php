@@ -1,21 +1,42 @@
 <?php
 
-$servername = "localhost";
+session_start();
 
-$username = "root";
+$username = "";
 
 $password = "";
 
-$db = "ash";
-
+$error=array();
 // Create connection
-$conn = new mysqli($servername, $username, $password, $db);
+$dbconn = mysqli_connect('localhost', 'root', '', 'ash');
 
-// Check connection
- //if ($conn->connect_error) {
-   //  die("Connection failed: " . $conn->connect_error);
- //} 
- //echo "Yeet";
-// 
+//we want to signup first so we would have a user 
+//input thier email and password
+if(isset($_POST['signup'])){
+    $username =mysqli_real_escape_string($dbconn,$_POST['username']);
+    $password =mysqli_real_escape_string($dbconn,$_POST['password']);
+
+    if (empty($username)) { array_push($errors, "Username is required"); }
+    if (empty($password)) { array_push($errors, "Password is required"); }
+
+    $user_check_query = "SELECT * FROM login WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($dbconn, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+    
+    if ($user) { // if user exists
+      if ($user['username'] === $username) {
+        array_push($error, "username already in database");
+      }
+    } 
+    //if no errors then we can do stuff
+    if(count($error)==0){
+        $query="INSERT INTO login (username,password)
+        VALUES('$username','$password')";
+        mysqli_query($dbconn,$query);
+        $_SESSION['username']=$username;
+        $_SESSION['sucessful']="Yall are logged in now yehaw";
+        header('location: register.php');
+    }
+}
 
 ?>

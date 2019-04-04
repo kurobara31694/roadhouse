@@ -1,7 +1,7 @@
 <!-- User Registration -->
 <?php
 include_once(app/Models/User.php);
-
+include_once('db_conn.php');
 // Form Validation
 $fullname = $address = $city = $state = $zip= "";
 $nameErr = $zErr= "";

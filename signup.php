@@ -1,31 +1,31 @@
 
 <?php
 
-include_once('db_conn.php');
+
 // define variables and set to empty values
-$emailErr = "";
-$email = "";
+//$emailErr = "";
+//$email = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-  if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-  } else {
-    $email = test_input($_POST["email"]);
+  //if (empty($_POST["email"])) {
+  //$emailErr = "Email is required";
+  //} else {
+    //$email = test_input($_POST["email"]);
     // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format"; 
-    }
-  }
+    //if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+     // $emailErr = "Invalid email format"; 
+   // }
+ // }
     
-  }
+  //}
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+//function test_input($data) {
+  //$data = trim($data);
+  //$data = stripslashes($data);
+  //$data = htmlspecialchars($data);
+  //return $data;
+//}
 ?>
 
 
@@ -53,21 +53,21 @@ function test_input($data) {
     <h1>Create Your Account</h1>
 
     <div class="container" id="login-section">
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
-        <?php include('errors.php');?>
+      <form method="post" action="signup.php" >
+        
         <div class="form-group">
           <label>Username</label>
-          <input type="username" id="input-field" class="form-control" placeholder="johndoe95@aol.com">
+          <input type="username" id="input-field" name="username" class="form-control" placeholder="johndoe95@aol.com">
           <small id="help-text" class="form-text text-muted">Please make sure this is the correct email.</small>
-          <span class="errorMsg"> <?php echo $emailErr;?></span>
+          
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="input-field" class="form-control" placeholder="************">
+          <input type="password" id="input-field" class="form-control" name= "password" placeholder="************">
           <small id="help-text" class="form-text text-muted">Please enter at least 5-10 characters.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" class="btn btn-primary" name="signup">Sign Up</button>
       </form>
       <a href="Login.php">Have an account? Sign in!</a>
     </div>
@@ -77,3 +77,6 @@ function test_input($data) {
 </body>
 
 </html>
+<?php
+include_once('db_conn.php');
+?>
