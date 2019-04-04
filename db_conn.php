@@ -46,9 +46,52 @@ if(isset($_POST['signup'])){
 
         $_SESSION['user_name']= $username;
         $_SESSION['sucessful']= "Yall are logged in now yehaw";
-        echo "yehaw?";
+        //echo "yehaw?";
         //header('location: register.php');
     }
 }
+
+//we wanna login somebody to thier account
+if (isset($_POST['login_user'])) {
+  $username = mysqli_real_escape_string($dbconn, $_POST['username']);
+  $password = mysqli_real_escape_string($dbconn, $_POST['password']);
+
+  if (empty($username)) {
+  	array_push($error, "Username is required");
+  }
+  if (empty($password)) {
+  	array_push($error, "Password is required");
+  }
+
+  if (count($error) == 0) {
+  	$password = $password;
+    $result='';
+    $row_cnt='';
+    if ($result = $dbconn->query("SELECT * FROM log WHERE user_name='$username' AND password='$password'")) {
+
+      /* determine number of rows result set */
+      $row_cnt = $result->num_rows;
+  
+      printf("Result set has %d rows.\n", $row_cnt);
+  
+      /* close result set */
+      //$result->close();
+     }
+     echo "here comes the count: ";
+     print_r($row_cnt);
+
+  	if ($row_cnt == 1) {
+  	  $_SESSION['user_name'] = $username;
+  	  $_SESSION['success'] = "You are now logged in";
+  	  header('location: wel.php');
+  	 }else {
+      array_push($error, "Wrong username/password combination");
+      echo "       WRONG USER NAME OR PASSWORD, SORRY  :(     ";
+  	}
+  }
+}
+
+//if we want somebody to be able to register thier information
+
 
 ?>

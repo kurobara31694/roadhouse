@@ -30,16 +30,16 @@ include_once('db_conn.php');
     <h2>Sign in below.</h2>
 
     <div class="container" id="login-section">
-      <form method="post" action="login.php" class="form-group">
+      <form method="post" action="login.php" >
 
-          <div class="form-group">
+          <div class="input-group">
             <label>Username</label>
             <input type="username" id="input-field" class="form-control" placeholder="Enter username" name="username"required>
             <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
             
           </div>
 
-          <div class="form-group">
+          <div class="input-group">
             <label>Password</label>
             <input type="password" id="input-field" class="form-control" placeholder="Password" name= "password" required>
             
@@ -56,9 +56,3 @@ include_once('db_conn.php');
 </body>
 
 </html>
-
-<!-- User Logs in here -->
-<?php
-include_once(app/Models/User.php);
-
-?>
