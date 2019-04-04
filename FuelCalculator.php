@@ -11,9 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	if(isset($_POST['calculate'])){
 		$numGallons = test_input($_POST["numGallons"]);
-		// $chooseMonth = test_input($_POST["chooseMonth"]);
-		// $chooseDay = test_input($_POST["chooseDay"]);
-		// $chooseYear = test_input($_POST["chooseYear"]);
+		$chooseMonth = test_input($_POST["chooseMonth"]);
+		$chooseDay = test_input($_POST["chooseDay"]);
+		$chooseYear = test_input($_POST["chooseYear"]);
 		
 		// Checking if the input is numeric
 		if(!preg_match("/^[0-9]*$.", $numGallons)){
@@ -117,3 +117,11 @@ function test_input($data) {
 </body>
 
 </html>
+
+<!-- The datavase stuff -->
+
+<?php
+
+
+
+?>
