@@ -2,6 +2,7 @@
 
 include_once('db_conn.php');
 
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ include_once('db_conn.php');
     crossorigin="anonymous">
 
   <!-- Our stylesheet -->
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="resources/style.css">
 
   <title>NAME | Sign In</title>
 </head>
@@ -29,22 +30,22 @@ include_once('db_conn.php');
     <h2>Sign in below.</h2>
 
     <div class="container" id="login-section">
-      <form method="post" action="login.php" class="form-group">
+      <form method="post" action="login.php" >
 
-          <div class="form-group">
+          <div class="input-group">
             <label>Username</label>
             <input type="username" id="input-field" class="form-control" placeholder="Enter username" name="username"required>
             <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
-            <span class="errorMsg"> <?php echo $errMsg;?></span>
+            
           </div>
 
-          <div class="form-group">
+          <div class="input-group">
             <label>Password</label>
             <input type="password" id="input-field" class="form-control" placeholder="Password" name= "password" required>
-            <span class="errorMsg"> <?php echo $errMsg;?></span>
+            
           </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" name="login_user">Submit</button>
       </form>
       <!-- Section that takes them to sign up -->
       <a href="signup.php">Don't have an accout? Sign Up!</a>
@@ -55,34 +56,3 @@ include_once('db_conn.php');
 </body>
 
 </html>
-
-<!-- User Logs in here -->
-<?php
-include_once(app/Models/User.php);
-
-// Form Validation
-$errMsg = "";
-$username = $password = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["username"])) {
-	  $errMsg = "Username is required";
-	} else {
-	  $username = test_input($_POST["username"]);
-    // check if name only contains letters and whitespace
-  }
-  if (empty($_POST["password"])) {
-    $errMsg = "Password is required";
-  } else {
-    $username = test_input($_POST["password"]);
-  }
-}
-
-function test_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-  }
-
-?>
