@@ -93,7 +93,6 @@ if (isset($_POST['login_user'])) {
   	}
   }
 }
-
 //if we want somebody to be able to register thier information
 if (isset($_POST['register'])) {
   $fullname = mysqli_real_escape_string($dbconn, $_POST['fullname']);
@@ -101,8 +100,6 @@ if (isset($_POST['register'])) {
   $city = mysqli_real_escape_string($dbconn, $_POST['city']);
   $state = mysqli_real_escape_string($dbconn, $_POST['state']);
   $zipcode = mysqli_real_escape_string($dbconn, $_POST['zipcode']);
- 
-
   if (empty($fullname)) {
   	array_push($error, "name is required");
   }
@@ -123,32 +120,24 @@ if (isset($_POST['register'])) {
    
     $result='';
     $row_cnt='';
-    if ($result = $dbconn->query("SELECT * FROM log WHERE user_name='$username' ")) {
-
+    if ($result = $dbconn->query("SELECT * FROM log
+     WHERE user_name='$username' ")) {
       /* determine number of rows result set */
       $row_cnt = $result->num_rows;
-  
-      printf("Result set has %d rows.\n", $row_cnt);
-  
-      
+        printf("Result set has %d rows.\n", $row_cnt);
     }
-     
-
-  	if ($row_cnt == 1) {
+    	if ($row_cnt == 1) {
   	  $_SESSION['user_name'] = $username;
-      
-      $query = " UPDATE log 
-      SET full_name='$fullname',address='$address1',city='$city',state='$state', zip= '$zipcode'  
-      WHERE user_name= '$username'";
+        $query = " UPDATE log SET full_name='$fullname',
+        address='$address1',city='$city',state='$state'
+        , zip= '$zipcode'  
+        WHERE user_name= '$username'";
         mysqli_query($dbconn,$query);
-
         if ($dbconn->query($query) == TRUE) {
           echo "New record created successfully";
           } else {
           echo "Error: " . $query . "<br>" . $dbconn->error;
          }
-
-
   	  header('location: wel.php');
   	 }else {
       array_push($error, "Wrong username/password combination");

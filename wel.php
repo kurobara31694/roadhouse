@@ -15,9 +15,41 @@ include_once('db_conn.php');
 
   <!-- Our stylesheet -->
   <link rel="stylesheet" href="styles/style.css">
-
+  
   <title>HOME PAGE</title> <?php echo $_SESSION['user_name'];
-  echo ", welcome." ;?>
+  echo nl2br(", welcome.\r\n");
+  $uname=$_SESSION['user_name'];
+ 
+  
+  $query="SELECT * FROM log
+  WHERE user_name='$uname' ";
+  echo "---Current User Information--- ";
+  if ($result = $dbconn->query($query)) {
+ 
+    while ($row = $result->fetch_assoc()) {
+      $field1name = $row["full_name"];
+      $field2name = $row["city"];
+      $field3name = $row["state"];
+      $field4name = $row["zip"];
+
+      echo nl2br("\r\nName: ");
+      echo $field1name;
+      
+      echo nl2br("\r\nState: ");
+      echo $field3name;
+      echo nl2br("\r\nCity: ");
+      echo $field2name;
+      echo nl2br("\r\nZip: ");
+      echo $field4name;
+
+
+
+
+    }
+  }
+
+  
+  ?>
 </head>
 
 <body>
