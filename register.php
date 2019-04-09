@@ -26,28 +26,39 @@ include_once('db_conn.php');
   <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style="margin-top: 50px" class="input-group">
     <div class="container">
       <h1>Complete Your Profile</h1>
+
+
+      <div class="form-group">
+      <label> Full Name</label>
       <div class="input-group">
-      <p> Full Name</p>
       <input class="form-control" type="text" name="fullname" placeholder="Please enter full name. Ex: Bill B. Baggins">
       </div>
-      <div class="input-group">
-      <p> Address</p>
-      <input class="form-control" type="text" name="address1" placeholder="Please enter address. Ex:123 Gondor Dr.">
       </div>
 
+      <div class="form-group">
+      <label> Address</label>
+      <div class="input-form">
+      <input class="form-control" type="text" name="address1" placeholder="Please enter address. Ex:123 Gondor Dr.">
+      </div> 
+    </div>
+
+      <div class="form-group">
+      <label>City</label>
       <div class="input-group">
-      <p>City</p>
       <input  class="form-control" type="text" name="city">
+      </div>
        </div>
 
-       <div class="input-group">
-      <p>State</p>
+       <div class="form-group">
+      <label>State</label>
       <input  class="form-control" type="text" name="state">
       </div>
 
+      <div class="form-group">
+      <label>Zipcode</label>
       <div class="input-group">
-      <p>Zipcode</p>
       <input  class="form-control" type="text" name=zipcode>
+      </div>
       </div>
       <button type="submit" class="btn btn-primary" name="register">Submit</button>
 

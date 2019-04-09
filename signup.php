@@ -57,15 +57,19 @@ include_once('db_conn.php');
     <div class="container" id="login-section">
       <form method="post" action="signup.php" >
         
-        <div class="input-group">
+        <div class="form-group">
           <label>Username</label>
+          <div class="input-group">
           <input type="username" id="input-field" name="username" class="form-control" placeholder="johndoe95@aol.com">
+          </div>
           <small id="help-text" class="form-text text-muted">Please make sure this is the correct email.</small>
           
         </div>
-        <div class="input-group">
+        <div class="form-group">
           <label>Password</label>
+          <div class="input-group">
           <input type="password" id="input-field" class="form-control" name= "password" placeholder="************">
+          </div>
           <small id="help-text" class="form-text text-muted">Please enter at least 5-10 characters.</small>
         </div>
 
