@@ -12,7 +12,7 @@ $state="";
 $zipcode="";
 $error=array();
 // Create connection
-$dbconn = mysqli_connect('localhost', 'root', '','ash');
+$dbconn = mysqli_connect('localhost', 'playerone', 'playertwo','ash');
 //check the connection
 if (mysqli_connect_errno())
   {
