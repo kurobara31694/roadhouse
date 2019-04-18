@@ -18,6 +18,7 @@ if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+
 //we want to signup first so we would have a user 
 //input thier email and password
 if(isset($_POST['signup'])){
