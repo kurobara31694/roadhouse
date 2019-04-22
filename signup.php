@@ -51,7 +51,7 @@ include_once('db_conn.php');
 
 <body>
   <div class="container" id="main">
-
+  <br><br>
     <h1>Create Your Account</h1>
 
     <div class="container" id="login-section">
