@@ -1,7 +1,6 @@
 <!-- Critical -->
 <!-- User Profile and the Fuel Calculator -->
 <?php
-$mysqli = new mysqli("localhost", "user2", "Hershey@2018", "test2");
 
 // Check connection
 if ($mysqli === false) {
@@ -36,13 +35,8 @@ function test_input($data)
 
 // Extra variables
 $transportationCost = 0.02;
-
-
 $discount = 0.01;
-
-
 // Pricing module - to be added later
-
 $pricePerGallon = 100;
 
 // Fix for Month selection
@@ -54,7 +48,7 @@ $pricePerGallon = 100;
 $totalPrice = $numGallons * ($transportationCost + $discount + $pricePerGallon);
 
 
-$sql = "INSERT INTO fuelcalc (OrderID, numGallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price) VALUES (NULL,'$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice')";
+$sql = "INSERT INTO fuelcalc (OrderID, num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price) VALUES (NULL,'$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice')";
 
 if ($mysqli->query($sql) === true) {
 	echo "Records inserted successfully.";

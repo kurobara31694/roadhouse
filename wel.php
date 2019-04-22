@@ -27,7 +27,6 @@ include_once('db_conn.php');
     <?php
     $uname = $_SESSION['user_name'];
 
-
     $query1 = "SELECT * FROM log WHERE user_name='$uname'";
 
 
@@ -51,15 +50,66 @@ include_once('db_conn.php');
 
     // Trying to display fuel calc info JUST for logged user
 
-    $query2 = "SELECT cust_user_id FROM fuelcalc where cust_username = $uname";
-    $result2 = $dbconn->query($query2);
+    // $query2 = "SELECT cust_user_id FROM fuelcalc where cust_username = $uname";
+    // $result2 = $dbconn->query($query2);
 
-    if ($result2->num_rows > 0) {
-      while ($row = $result2->fetch_assoc()) {
-        echo nl2br("\r\n User ID from fuel table is: " . $row["cust_user_id"]);
+    // if ($result2->num_rows > 0) {
+    //   while ($row = $result2->fetch_assoc()) {
+    //     echo nl2br("\r\n User ID from fuel table is: " . $row["cust_user_id"]);
+    //   }
+    // } else {
+    //   echo "<h2> NOOOOOOOOOOOOOOOOOOOOOOOO </h2>";
+    // }
+
+    // Form Validation
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+      if (isset($_POST['calculate'])) {
+        $numGallons = test_input($_POST["numGallons"]);
+        $chooseMonth = test_input($_POST["chooseMonth"]);
+        $chooseDay = test_input($_POST["chooseDay"]);
+        $chooseYear = test_input($_POST["chooseYear"]);
+
+        // Checking if the input is numeric
+        if (!preg_match("/^[0-9]*$.", $numGallons)) {
+          $errorMessage = "Only numbers allowed.";
+        }
       }
-    } else {
-      echo "<h2> NOOOOOOOOOOOOOOOOOOOOOOOO </h2>";
+    }
+
+    function test_input($data)
+    {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+    }
+
+
+    // Fuel Calculator
+    // Extra variables
+    $transportationCost = 0.02;
+    $discount = 0.01;
+    // Pricing module - to be added later
+    $pricePerGallon = 100;
+
+
+    $totalPrice = $numGallons * ($transportationCost + $discount + $pricePerGallon);
+
+    $query3 = "INSERT INTO fuelcalc (OrderID, num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price) VALUES (NULL,'$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice')";
+
+    if ($uname == true ) {
+      # code...
+      $result3 = $dbconn->query($query3);
+
+      if ($result3 == true) {
+  
+          echo "Yay";
+  
+      } else {
+        
+        echo nl2br("\r\n ERROR: Cannot execute $result3. " . $dbconn->error);
+      }
     }
 
     ?>
@@ -73,6 +123,7 @@ include_once('db_conn.php');
 
     <!-- Testing the calculator -->
     <section>
+
 
       <!-- Beginning of Fuel Calculator -->
 
@@ -116,13 +167,12 @@ include_once('db_conn.php');
 
             <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
 
-
             <h2 style="margin-top: 25px"> The Bill:
               <?php
               if (isset($_POST['calculate'])) {
                 $selected_val = $_POST["chooseMonth"];
                 echo "You ordered " . $numGallons . " gallons" . "<br>";
-                echo "Your order will be delivered on " . $selected_val . " " . $chooseDay . " " . $chooseYear . "<br>";
+                echo "Your order will be delivered on " . $selected_val . " / " . $chooseDay . " / " . $chooseYear . "<br>";
                 echo "Your transportation cost is $" . $transportationCost . "<br>";
                 echo "Your discount is $" . $discount . "<br>";
                 echo "Your pricePerGallon is $" . $pricePerGallon . "<br>";
@@ -135,41 +185,7 @@ include_once('db_conn.php');
             <!-- Should be PHP script -->
             <!-- With database calls -->
 
-            <h2>Fuel History</h2>
 
-            <?php
-            $sql = "SELECT OrderID, numGallons, c_month, c_day, c_year, price_per_gallon, trans_cost, total_price FROM fuelcalc";
-            $result = $conn->query($sql);
-            echo "<table border='1'>
-            <tr>
-              <th>OrderID</th>
-              <th>numGallons</th>
-              <th>c_month</th>
-              <th>c_day</th>
-              <th>c_year</th>
-              <th>price_per_gallon</th>
-              <th>trans_cost</th>
-              <th>total_price</th>
-            </tr>";
-
-            if ($result->num_rows > 0) {
-              while ($row =  $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['OrderID'] . "</td>";
-                echo "<td>" . $row['numGallons'] . "</td>";
-                echo "<td>" . $row['c_month'] . "</td>";
-                echo "<td>" . $row['c_day'] . "</td>";
-                echo "<td>" . $row['c_year'] . "</td>";
-                echo "<td>" . $row['price_per_gallon'] . "</td>";
-                echo "<td>" . $row['trans_cost'] . "</td>";
-                echo "<td>" . $row['total_price'] . "</td>";
-                echo "</tr>";
-              }
-            }
-
-            echo "</table>";
-            $conn->close();
-            ?>
 
           </div>
 
