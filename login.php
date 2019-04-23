@@ -18,7 +18,7 @@ include_once('db_conn.php');
     crossorigin="anonymous">
 
   <!-- Our stylesheet -->
-  <link rel="stylesheet" href="resources/style.css">
+  <link rel="stylesheet" href="styles/style.css">
 
   <title>NAME | Sign In</title>
 </head>
@@ -26,23 +26,28 @@ include_once('db_conn.php');
 <body>
   <div class="container" id="main">
 
+  <br><br>
     <h1>Welcome to Oil Company</h1>
     <h2>Sign in below.</h2>
 
     <div class="container" id="login-section">
       <form method="post" action="login.php" >
 
-          <div class="input-group">
+          <div class="form-group">
             <label>Username</label>
+            <div class="input-group">
             <input type="username" id="input-field" class="form-control" placeholder="Enter username" name="username"required>
-            <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
             
+            <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
+            </div>
           </div>
 
-          <div class="input-group">
+          <div class="form-group">
             <label>Password</label>
+            <div class="input-group">
             <input type="password" id="input-field" class="form-control" placeholder="Password" name= "password" required>
-            
+            <small id="help-text" class="form-text text-muted">Put not bad passworld plz tank joo.</small>
+            </div>
           </div>
 
         <button type="submit" class="btn btn-primary" name="login_user">Submit</button>

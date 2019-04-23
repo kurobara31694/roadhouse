@@ -139,14 +139,18 @@ include_once('db_conn.php');
 
             <h2>Enter information below</h2>
 
+            <div class="form-group">
             <label>Requested Number of Gallons</label>
+            <div class="input-group">
             <input class="form-control" type="number" id="numGallons" name="numGallons" required placeholder="This must be a number" min="1" max="100000">
-            <br><br>
+            </div>
+          </div>
 
             <div id="date_value" name="date_value">
               <h3> For Delivery Date</h3>
 
               <!-- Assign values to Month -->
+              <div class="form-group">
               <label>Choose the month:</label>
               <?php
               $MonthArray = array("1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August", "9" => "September", "10" => "October", "11" => "November", "12" => "December");
@@ -160,15 +164,23 @@ include_once('db_conn.php');
                 }
                 ?>
               </select>
-
-              <label>Choose the Day of the month:</label>
-              <input name="chooseDay" id="chooseDay" type="text" class="form-control" placeholder="Enter the day as a number, like 14." required>
+              </div>
 
               <!-- Enter year -->
-              <label>Enter the year:</label>
-              <input name="chooseYear" id="chooseYear" type="text" class="form-control" placeholder="2019" min="2019" required>
+              <div class="form-group">
+              <label>Choose the Day of the month:</label>
+              <div class="input-group">
+              <input name="chooseDay" id="chooseDay" type="text" class="form-control" placeholder="Enter the day as a number, like 14." required>
+              </div>
+              </div>
 
-            </div>
+              <!-- Enter year -->
+              <div class="form-group">
+              <label>Enter the year:</label>
+              <div class="input-group">
+              <input name="chooseYear" id="chooseYear" type="text" class="form-control" placeholder="2019" min="2019" required>
+              </div>
+              </div>
 
             <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
 
