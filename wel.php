@@ -171,7 +171,7 @@ include_once('db_conn.php');
 
         <form method="post" action="#" class="form-group">
           <div class="container" style="margin-top: 40px">
-          <h1> Complete Profile </h1>
+          <h1> Fuel Calculator </h1>
             <h2>Enter information below</h2>
 
             <div class="form-group">

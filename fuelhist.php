@@ -78,12 +78,12 @@ include_once('db_conn.php');
 <div class="btn-toolbar justify-content-between" id=sucks role="toolbar" aria-label="Toolbar with button groups"  >
 
 <div class="btn-group">
- <button class="btn btn-success" href="wel.php">Return to Fuel Calculator</button>
+ <a class="btn btn-success" href="wel.php">Return to Fuel Calculator</a>
 </div>
 
 <div class="btn-group mr-2">
 <a class="btn btn-info" href="register.php">Edit Profile</a>
-<a class="btn btn-light" href="logout.php">Log Out</a>
+<a class="btn btn-danger" href="logout.php">Log Out</a>
 </div>
 </div>
 
