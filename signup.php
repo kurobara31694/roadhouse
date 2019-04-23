@@ -72,7 +72,6 @@ include_once('db_conn.php');
           </div>
           <small id="help-text" class="form-text text-muted">Please enter at least 5-10 characters.</small>
         </div>
-
         <button type="submit" class="btn btn-primary" name="signup">Sign Up</button>
       </form>
       <a href="Login.php">Have an account? Sign in!</a>

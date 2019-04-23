@@ -105,8 +105,9 @@ include_once('db_conn.php');
 
     if ($uname == true ) {
       # code...
+      if(!empty($numGallons) || !empty($chooseMonth) || !empty($chooseDay) || !empty($chooseYear)){
       $result3 = $dbconn->query($query3);
-
+      }
       if ($result3 == true) {
   
           echo "Yay";
@@ -122,8 +123,6 @@ include_once('db_conn.php');
 
     <div class="container" id="buttons">
 
-      <a href="login.php">Don't wanna be here? LEAVE!</a>
-      <a href="register.php">wanna register more information?</a>
     </div>
 
     <!-- Testing the calculator -->
@@ -182,7 +181,23 @@ include_once('db_conn.php');
               </div>
               </div>
 
+            <?php
+            if(!empty($uname)) {
+            ?>
             <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
+            <a class="btn btn-secondary" href="register.php" style="float: right;">Edit Profile</a>
+            <?php
+            }  else {
+            ?>
+              <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Calculate </button>
+              <small class="text-danger">Please login with link below</small>
+
+              <?php
+              }
+              ?>
+            <br>
+            <a href="login.php">Don't wanna be here? LEAVE!</a>
+
 
             <h2 style="margin-top: 25px"> The Bill:
               <?php

@@ -61,9 +61,9 @@ include_once('db_conn.php');
       </div>
       </div>
       <button type="submit" class="btn btn-primary" name="register">Submit</button>
-
+      <br>
+      <a href="wel.php">Want to go to the welcome page?</a>
     </div>
-    <a href="wel.php">Want to go to the welcome page?</a>
   </form>
 
 </body>
