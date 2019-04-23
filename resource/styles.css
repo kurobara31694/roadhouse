@@ -5,12 +5,14 @@
 /* Global */
 *{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 body {
     height: 100%;
     width: 100%;
     background: #FAF7FF;
     color: #474747;
+    margin:10px;
 }
 
 h1 {
@@ -40,13 +42,9 @@ label {
 }
 
 #input-field{
-    margin-top: 25px;
-}
+    padding-bottom: 25px;
+    padding-top: 25px;
 
-button {
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 36px;
 }
 
 .errorMsg {
@@ -58,6 +56,19 @@ button {
     font-size: 4em;
     color: orangered;
     margin-bottom: 25px;
+}
+
+#msg{
+    width:400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 100
+}
+
+#sucks{
+    position: relative;
 }
 /* Login */
 

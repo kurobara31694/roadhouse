@@ -171,7 +171,7 @@ include_once('db_conn.php');
 
         <form method="post" action="#" class="form-group">
           <div class="container" style="margin-top: 40px">
-
+          <h1> Complete Profile </h1>
             <h2>Enter information below</h2>
 
             <div class="form-group">
@@ -182,7 +182,6 @@ include_once('db_conn.php');
           </div>
 
             <div id="date_value" name="date_value">
-              <h3> For Delivery Date</h3>
 
               <!-- Assign values to Month -->
               <div class="form-group">
@@ -224,24 +223,23 @@ include_once('db_conn.php');
             <?php
             if(!empty($uname)) {
             ?>
-           
-            <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
+           <div class="btn-toolbar m-1 justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+           <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
 
-           <!--class="btn-group"--> 
-            <div style="float: right;">
-            <a class="btn btn-info px-2" href="register.php">Edit Profile</a>
-            <a class="btn btn-secondary px-2" href="logout.php">Log Out</a>
+            <div class="btn-group " role="group" aria-label="First group">
+            <a class="btn btn-info " href="register.php">Edit Profile</a>
+            <a class="btn btn-secondary" href="fuelhist.php">Fuel History</a>
+            <a class="btn btn-light" href="logout.php">Log Out</a>
+            </div>
             </div>
             <?php
             }  else {
             ?>
               <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Calculate </button>
               <small class="text-danger">Please login with link below</small>
-
               <?php
               }
               ?>
-            <br>
             <a href="login.php">Don't wanna be here? LEAVE!</a>
 
 

@@ -17,7 +17,7 @@ include_once('db_conn.php');
     crossorigin="anonymous">
 
   <!-- Our stylesheet -->
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="resource/styles.css">
 
   <title>Complete Your Profile</title>
 </head>
@@ -26,30 +26,23 @@ include_once('db_conn.php');
   <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style="margin-top: 50px" class="input-group">
     <div class="container">
       <h1>Complete Your Profile</h1>
+      <h2>Fill out the information and finish creating account!</h2>
 
-
-      <div class="form-group">
       <label> Full Name</label>
       <div class="input-group">
       <input class="form-control" type="text" name="fullname" placeholder="Please enter full name. Ex: Bill B. Baggins">
       </div>
-      </div>
 
-      <div class="form-group">
       <label> Address</label>
       <div class="input-form">
       <input class="form-control" type="text" name="address1" placeholder="Please enter address. Ex:123 Gondor Dr.">
       </div> 
-    </div>
 
-      <div class="form-group">
       <label>City</label>
       <div class="input-group">
       <input  class="form-control" type="text" name="city">
       </div>
-       </div>
 
-       <div class="form-group">
       <label>State</label>
       <?php
       		$states	= array(
@@ -106,8 +99,7 @@ include_once('db_conn.php');
             "DC" => "Washington D.C."
           );
           ?>
-      <select name="state"
-       class="form-control" required>
+      <select name="state" class="form-control" required>
           <option value="">Select State</option>
           <?php
           foreach ($states as $stateAbbr => $state) {
@@ -116,18 +108,15 @@ include_once('db_conn.php');
           }
           ?>
       </select>
-      </div>
       <!--<input  class="form-control" type="text" name="state">-->
 
-      <div class="form-group">
       <label>Zipcode</label>
       <div class="input-group">
-      <input  class="form-control" type="text" name=zipcode>
+      <input class="form-control" type="text" name=zipcode>
       </div>
-      </div>
-      <button type="submit" class="btn btn-primary" name="register">Submit</button>
+
+      <button type="submit" class="btn btn-primary mt-3 m-1" name="register">Submit</button>
       <br>
-      <a href="wel.php">Want to go to the welcome page?</a>
     </div>
   </form>
 
