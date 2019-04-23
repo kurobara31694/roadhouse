@@ -34,11 +34,11 @@ include_once('db_conn.php');
     if ($result1 = $dbconn->query($query1)) {
 
       while ($row = $result1->fetch_assoc()) {
+        $userID = $row["user_id"];
         $fullName = $row["full_name"];
         $cityName = $row["city"];
         $stateName = $row["state"];
         $zipCode = $row["zip"];
-        $userID = $row["user_id"];
 
         echo nl2br("\r\nName: " . $fullName);
         echo nl2br("\r\nCity: " . $cityName);
@@ -74,6 +74,11 @@ include_once('db_conn.php');
         if (!preg_match("/^[0-9]*$.", $numGallons)) {
           $errorMessage = "Only numbers allowed.";
         }
+
+        if (empty($numGallons) || empty($chooseMonth) ||empty($chooseDay) || empty($chooseYear))
+        {
+          $errorMessage = "Please fill form completely";
+        }
       }
     }
 
@@ -96,7 +101,7 @@ include_once('db_conn.php');
 
     $totalPrice = $numGallons * ($transportationCost + $discount + $pricePerGallon);
 
-    $query3 = "INSERT INTO fuelcalc (OrderID, num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price) VALUES (NULL,'$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice')";
+    $query3 = "INSERT INTO fuelcalc (num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price, cust_user_id) VALUES ('$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice', '$userID')";
 
     if ($uname == true ) {
       # code...
