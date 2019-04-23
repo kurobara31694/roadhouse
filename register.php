@@ -51,8 +51,73 @@ include_once('db_conn.php');
 
        <div class="form-group">
       <label>State</label>
-      <input  class="form-control" type="text" name="state">
+      <?php
+      		$states	= array(
+            "AL" => "Alabama",
+            "AK" => "Alaska",
+            "AZ" => "Arizona",
+            "AR" => "Arkansas",
+            "CA" => "California",
+            "CO" => "Colorado",
+            "CT" => "Connecticut",
+            "DE" => "Delaware",
+            "FL" => "Florida",
+            "GA" => "Georgia",
+            "HI" => "Hawaii",
+            "ID" => "Idaho",
+            "IL" => "Illinois",
+            "IN" => "Indiana",
+            "IA" => "Iowa",
+            "KS" => "Kansas",
+            "KY" => "Kentucky",
+            "LA" => "Louisiana",
+            "ME" => "Maine",
+            "MD" => "Maryland",
+            "MA" => "Massachusetts",
+            "MI" => "Michigan",
+            "MN" => "Minnesota",
+            "MS" => "Mississippi",
+            "MO" => "Missouri",
+            "MT" => "Montana",
+            "NE" => "Nebraska",
+            "NV" => "Nevada",
+            "NH" => "New Hampshire",
+            "NJ" => "New Jersey",
+            "NM" => "New Mexico",
+            "NY" => "New York",
+            "NC" => "North Carolina",
+            "ND" => "North Dakota",
+            "OH" => "Ohio",
+            "OK" => "Oklahoma",
+            "OR" => "Oregon",
+            "PA" => "Pennsylvania",
+            "RI" => "Rhode Island",
+            "SC" => "South Carolina",
+            "SD" => "South Dakota",
+            "TN" => "Tennessee",
+            "TX" => "Texas",
+            "UT" => "Utah",
+            "VT" => "Vermont",
+            "VA" => "Virginia",
+            "WA" => "Washington",
+            "WV" => "West Virginia",
+            "WI" => "Wisconsin",
+            "WY" => "Wyoming",
+            "DC" => "Washington D.C."
+          );
+          ?>
+      <select name="state"
+       class="form-control" required>
+          <option value="">Select State</option>
+          <?php
+          foreach ($states as $stateAbbr => $state) {
+            $selected = (isset($getState) && $getState == $stateAbbr) ? 'selected' : '';
+            echo '<option ' . $selected . ' value="' . $stateAbbr . '">' . $state . '</option>';
+          }
+          ?>
+      </select>
       </div>
+      <!--<input  class="form-control" type="text" name="state">-->
 
       <div class="form-group">
       <label>Zipcode</label>

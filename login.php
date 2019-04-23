@@ -37,17 +37,16 @@ include_once('db_conn.php');
             <label>Username</label>
             <div class="input-group">
             <input type="username" id="input-field" class="form-control" placeholder="Enter username" name="username"required>
-            
-            <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
             </div>
+            <small id="help-text" class="form-text text-muted">Please make sure all letters are lowercase.</small>
           </div>
 
           <div class="form-group">
             <label>Password</label>
             <div class="input-group">
             <input type="password" id="input-field" class="form-control" placeholder="Password" name= "password" required>
-            <small id="help-text" class="form-text text-muted">Put not bad passworld plz tank joo.</small>
             </div>
+            <small id="help-text" class="form-text text-muted">Put not bad passworld plz tank joo.</small>
           </div>
 
         <button type="submit" class="btn btn-primary" name="login_user">Submit</button>

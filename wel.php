@@ -35,6 +35,7 @@ include_once('db_conn.php');
 
       while ($row = $result1->fetch_assoc()) {
         $userID = $row["user_id"];
+        $address = $row["address"];
         $fullName = $row["full_name"];
         $cityName = $row["city"];
         $stateName = $row["state"];
@@ -92,22 +93,57 @@ include_once('db_conn.php');
 
 
     // Fuel Calculator
-    // Extra variables
-    $transportationCost = 0.02;
-    $discount = 0.01;
-    // Pricing module - to be added later
-    $pricePerGallon = 100;
+    //Formulas
+    $transportationCost;
+    $discount;
+    $seasonalrate;
+    $GRF;
+    $pricePerGallon;
+    $baseprice = 1.50;
+    $profit = .10;
 
+    if($stateName="TX"){
+      $transportationCost = .02;
+    } else {
+      $transportationCost = .04;
+    }
 
-    $totalPrice = $numGallons * ($transportationCost + $discount + $pricePerGallon);
+    $SQLresult='';
+    $row_cnt='';
+    $SQLresult = $dbconn->query("SELECT * FROM fuelcalc
+    WHERE cust_user_id='$userID' ");
+      /* determine number of rows result set */
+    $row_cnt = $SQLresult->num_rows;
 
-    $query3 = "INSERT INTO fuelcalc (num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, total_price, cust_user_id) VALUES ('$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$totalPrice', '$userID')";
+    if($row_cnt > 0){
+      $discount = .01;
+    } else {
+      $discount = 0;
+    }
+
+  if($chooseMonth >= 3 && $chooseMonth <= 8){
+    $seasonalrate = .04;
+  } else{
+    $seasonalrate = .03;
+  }
+
+  if($numGallons > 1000){
+    $GRF = .02;
+  } else {
+    $GRF = .03;
+  }
+
+  $pricePerGallon = $baseprice + ($baseprice * ($transportationCost - $discount + $GRF + $profit + $seasonalrate));
+
+    $totalPrice = $numGallons * $pricePerGallon;
+
+    $query3 = "INSERT INTO fuelcalc (num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, seasonalrate, GRF, total_price, cust_user_id) VALUES ('$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$seasonalrate', '$GRF', '$totalPrice', '$userID')";
 
     if ($uname == true ) {
       # code...
-      if(!empty($numGallons) || !empty($chooseMonth) || !empty($chooseDay) || !empty($chooseYear)){
+      if(empty(!$numGallons) || !empty($chooseMonth) || !empty($chooseDay) || !empty($chooseYear)){
       $result3 = $dbconn->query($query3);
-      }
+    }
       if ($result3 == true) {
   
           echo "Yay";
@@ -150,10 +186,13 @@ include_once('db_conn.php');
 
               <!-- Assign values to Month -->
               <div class="form-group">
+              
               <label>Choose the month:</label>
+
               <?php
               $MonthArray = array("1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August", "9" => "September", "10" => "October", "11" => "November", "12" => "December");
               ?>
+
               <select name="chooseMonth" class="form-control" required>
                 <option value="">Select Month</option>
                 <?php
@@ -161,6 +200,7 @@ include_once('db_conn.php');
                   $selected = (isset($getMonth) && $getMonth == $monthNum) ? 'selected' : '';
                   echo '<option ' . $selected . ' value="' . $monthNum . '">' . $chooseMonth . '</option>';
                 }
+
                 ?>
               </select>
               </div>
@@ -184,8 +224,14 @@ include_once('db_conn.php');
             <?php
             if(!empty($uname)) {
             ?>
+           
             <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
-            <a class="btn btn-secondary" href="register.php" style="float: right;">Edit Profile</a>
+
+           <!--class="btn-group"--> 
+            <div style="float: right;">
+            <a class="btn btn-info px-2" href="register.php">Edit Profile</a>
+            <a class="btn btn-secondary px-2" href="logout.php">Log Out</a>
+            </div>
             <?php
             }  else {
             ?>
@@ -199,19 +245,38 @@ include_once('db_conn.php');
             <a href="login.php">Don't wanna be here? LEAVE!</a>
 
 
-            <h2 style="margin-top: 25px"> The Bill:
+            <p style="margin-top: 25px">
               <?php
+              $selected_val = $_POST["chooseMonth"];
               if (isset($_POST['calculate'])) {
-                $selected_val = $_POST["chooseMonth"];
-                echo "You ordered " . $numGallons . " gallons" . "<br>";
-                echo "Your order will be delivered on " . $selected_val . " / " . $chooseDay . " / " . $chooseYear . "<br>";
-                echo "Your transportation cost is $" . $transportationCost . "<br>";
-                echo "Your discount is $" . $discount . "<br>";
-                echo "Your pricePerGallon is $" . $pricePerGallon . "<br>";
-                echo "Total Price is $ " . $totalPrice;
+                echo '
+                <table class="table table-bordered">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Delivered Address</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Zip</th>
+                    <th scope="col">Delivery Date</th>
+                    <th scope="col"># of Gallons</th>
+                    <th scope="col">Price Per Gallon</th>
+                    <th scope="col">Total Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td> ',$address, '</td>
+                    <td> ', $stateName, '</td>
+                    <td> ',$zipCode, ' </td>
+                    <td> ',$selected_val,'  /   ',$chooseDay,'   /   ',$chooseYear,'</td>
+                    <td> ',$numGallons, ' gallons </td>
+                    <td> $  ',$pricePerGallon,' </td>
+                    <td> $  ', $totalPrice,'</td>
+                  </tr>
+                </tbody>
+              </table>';
               }
               ?>
-            </h2>
+            </p>
 
             <!-- This where the calculation will take place -->
             <!-- Should be PHP script -->
