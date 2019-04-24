@@ -22,6 +22,59 @@ include_once('db_conn.php');
 
 <body>
 
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-primary justify-content-between">
+<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+<a class="navbar-brand" href="#">
+    <img src="icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Fellowship
+  </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            <a class="nav-item nav-link" href="wel.php" >Fuel Calculator </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link active" href="fuelhist.php" >Fuel History<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.php">Edit Profile</a>
+            </li>
+</div>
+
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item active">
+        <?php
+        if(!empty($_SESSION['user_name'])){
+        echo '<a class="nav-item nav-link active">
+        Hi ' .$_SESSION['user_name']. '!</a>';
+      } else{
+        echo '<a class="nav-item nav-link active">
+        Hi Guest!<span class="sr-only">(current)</span></a>';
+    }
+        ?>
+      </li>
+       <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0 pull-right">
+      <?php
+      if(!empty($_SESSION['user_name'])) {
+      ?>
+   <a class="btn btn-danger my-2 my-sm-0" href="logout.php">Log Out</a>
+   <?php
+          }  else {
+            ?>
+            <div class="btn-group" role="group">
+            <a class="btn btn-success my-2 my-sm-0" href="login.php">Log In</a>
+            <a class="btn btn-warning my-2 my-sm-0" href="signup.php">Sign Up</a>
+            </div>
+
+           <?php
+              }
+              ?>
+    </form>
+    </div>
+</nav>
+
   <main class="container">
 
     <?php
@@ -40,12 +93,13 @@ include_once('db_conn.php');
         $cityName = $row["city"];
         $stateName = $row["state"];
         $zipCode = $row["zip"];
-
+/*
         echo nl2br("\r\nName: " . $fullName);
         echo nl2br("\r\nCity: " . $cityName);
         echo nl2br("\r\nState: " . $stateName);
         echo nl2br("\r\nZip: " . $zipCode);
         echo nl2br("\r\nUser ID_Login: " . $userID);
+        */
       }
     }
 
@@ -102,7 +156,7 @@ include_once('db_conn.php');
     $baseprice = 1.50;
     $profit = .10;
 
-    if($stateName="TX"){
+    if($stateName=="TX"){
       $transportationCost = .02;
     } else {
       $transportationCost = .04;
@@ -167,6 +221,7 @@ include_once('db_conn.php');
 
       <!-- Beginning of Fuel Calculator -->
 
+
       <div class="container" id="main">
 
         <form method="post" action="#" class="form-group">
@@ -206,7 +261,7 @@ include_once('db_conn.php');
 
               <!-- Enter year -->
               <div class="form-group">
-              <label>Choose the Day of the month:</label>
+              <label>Choose the Day:</label>
               <div class="input-group">
               <input name="chooseDay" id="chooseDay" type="text" class="form-control" placeholder="Enter the day as a number, like 14." required>
               </div>
@@ -221,26 +276,18 @@ include_once('db_conn.php');
               </div>
 
             <?php
-            if(!empty($uname)) {
+            if(!empty($_SESSION['user_name'])) {
             ?>
-           <div class="btn-toolbar m-1 justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
            <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Calculate </button>
 
-            <div class="btn-group " role="group" aria-label="First group">
-            <a class="btn btn-info " href="register.php">Edit Profile</a>
-            <a class="btn btn-secondary" href="fuelhist.php">Fuel History</a>
-            <a class="btn btn-light" href="logout.php">Log Out</a>
-            </div>
-            </div>
             <?php
             }  else {
             ?>
               <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Calculate </button>
-              <small class="text-danger">Please login with link below</small>
+              <small class="text-danger">Please login</small>
               <?php
               }
               ?>
-            <a href="login.php">Don't wanna be here? LEAVE!</a>
 
 
             <p style="margin-top: 25px">

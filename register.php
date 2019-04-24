@@ -23,6 +23,62 @@ include_once('db_conn.php');
 </head>
 
 <body>
+  
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-primary justify-content-between">
+<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+<a class="navbar-brand" href="#">
+    <img src="icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Fellowship
+  </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-item nav-link active" href="wel.php" >Fuel Calculator <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="fuelhist.php" >Fuel History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.php">Edit Profile</a>
+            </li>
+</div>
+
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item active">
+        <?php
+        if(!empty($_SESSION['user_name'])){
+        echo '<a class="nav-item nav-link active">
+        Hi ' .$_SESSION['user_name']. '!</a>';
+      } else{
+        echo '<a class="nav-item nav-link active">
+        Hi Guest!<span class="sr-only">(current)</span></a>';
+    }
+        ?>
+      </li>
+       <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0 pull-right">
+      <?php
+      if(!empty($_SESSION['user_name'])) {
+      ?>
+   <a class="btn btn-danger my-2 my-sm-0" href="logout.php">Log Out</a>
+   <?php
+          }  else {
+            ?>
+            <div class="btn-group" role="group">
+            <a class="btn btn-success my-2 my-sm-0" href="login.php">Log In</a>
+            <a class="btn btn-warning my-2 my-sm-0" href="signup.php">Sign Up</a>
+            </div>
+
+           <?php
+              }
+              ?>
+    </form>
+    </div>
+</nav>
+<?php
+if(!empty($_SESSION['user_name'])){
+  ?>
   <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" style="margin-top: 50px" class="input-group">
     <div class="container">
       <h1>Complete Your Profile</h1>
@@ -119,7 +175,13 @@ include_once('db_conn.php');
       <br>
     </div>
   </form>
+        <?php } else{
 
+          echo '<h1 id="msg"align="center" STYLE="font-size: 35pt" >Sorry No Account! <br> <SPAN STYLE="font-size: 15pt">Please Log in or Sign up</span></h1>';
+
+        }
+        
+        ?>
 </body>
 
 </html>

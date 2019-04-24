@@ -22,15 +22,68 @@ include_once('db_conn.php');
 
 <body>
 
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-primary justify-content-between">
+<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+<a class="navbar-brand" href="#">
+    <img src="icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Fellowship
+  </a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-item nav-link active" href="wel.php" >Fuel Calculator <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="fuelhist.php" >Fuel History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.php">Edit Profile</a>
+            </li>
+</div>
+
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item active">
+        <?php
+        if(!empty($_SESSION['user_name'])){
+        echo '<a class="nav-item nav-link active">
+        Hi ' .$_SESSION['user_name']. '!</a>';
+      } else{
+        echo '<a class="nav-item nav-link active">
+        Hi Guest!<span class="sr-only">(current)</span></a>';
+    }
+        ?>
+      </li>
+       <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0 pull-right">
+      <?php
+      if(!empty($_SESSION['user_name'])) {
+      ?>
+   <a class="btn btn-danger my-2 my-sm-0" href="logout.php">Log Out</a>
+   <?php
+          }  else {
+            ?>
+            <div class="btn-group" role="group">
+            <a class="btn btn-success my-2 my-sm-0" href="login.php">Log In</a>
+            <a class="btn btn-warning my-2 my-sm-0" href="signup.php">Sign Up</a>
+            </div>
+
+           <?php
+              }
+              ?>
+    </form>
+    </div>
+</nav>
+
   <main class="container">
 
   <?php
     $uname = $_SESSION['user_name'];
 
-    $query1 = "SELECT * FROM log WHERE user_name='$uname'";
+    $query1 = "SELECT user_id FROM log WHERE user_name='$uname'";
 
-
-    // Information from Login Table
+    if(!empty($_SESSION['user_name'])){
+      // Information from Login Table
     if ($result1 = $dbconn->query($query1)) {
 
       while ($row = $result1->fetch_assoc()) {
@@ -74,21 +127,13 @@ include_once('db_conn.php');
             }
         }
     }
+  } else {
+
+    echo '<h1 id="msg"align="center" STYLE="font-size: 35pt" >Oops! Not Logged in! <br> <SPAN STYLE="font-size: 15pt">Please Sign up or sign in</span></h1>';
+
+  }
+
               ?>
-<div class="btn-toolbar justify-content-between" id=sucks role="toolbar" aria-label="Toolbar with button groups"  >
-
-<div class="btn-group">
- <a class="btn btn-success" href="wel.php">Return to Fuel Calculator</a>
-</div>
-
-<div class="btn-group mr-2">
-<a class="btn btn-info" href="register.php">Edit Profile</a>
-<a class="btn btn-danger" href="logout.php">Log Out</a>
-</div>
-</div>
-
-<a href="login.php">Don't wanna be here? LEAVE!</a>
-
 </body>
 
 </html>
