@@ -29,11 +29,11 @@ include_once('db_conn.php');
     Fellowship
   </a>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-            <a class="nav-item nav-link" href="wel.php" >Fuel Calculator </a>
-            </li>
             <li class="nav-item active">
-                <a class="nav-link active" href="fuelhist.php" >Fuel History<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="wel.php" >Fuel Calculator </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="fuelhist.php" >Fuel History<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="register.php">Edit Profile</a>
