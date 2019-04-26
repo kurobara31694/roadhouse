@@ -13,8 +13,23 @@ include_once('db_conn.php');
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- jQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+
   <!-- Our stylesheet -->
   <link rel="stylesheet" href="resources/style.css">
+
+  <!-- the real jQuery stuff -->
+  <script>
+    $(document).ready(function() {
+      $("#getPrice").click(function(){
+        $("#price-section").load("getprice.php")
+
+      });
+    });
+
+  </script>
 
   <title>HOME PAGE</title>
 
@@ -147,6 +162,7 @@ include_once('db_conn.php');
 
     // Fuel Calculator
     //Formulas
+
     $transportationCost;
     $discount;
     $seasonalrate;
@@ -271,6 +287,11 @@ include_once('db_conn.php');
                 <div class="input-group">
                   <input name="chooseYear" id="chooseYear" type="text" class="form-control" placeholder="2019" min="2019" required>
                 </div>
+              </div>
+
+              <div class="container-fluid">
+
+              <a href="#getPrice">get Price</a>
               </div>
 
               <?php
