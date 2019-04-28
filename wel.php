@@ -214,8 +214,10 @@ include_once('db_conn.php');
       </h1>
       <h3>Order fuel below</h3>
 
-      <label>Requested Number of Gallons</label>
+      <label>Number of Gallons</label>
       <input class="form-control" type="number" id="numGallons" name="numGallons" required placeholder="This must be a number" min="1" max="100000">
+      <small>Orders over 1000 gallons receive a 10% discount!</small>
+      <br>
 
 
       <!-- Assign values to Month -->
@@ -239,10 +241,14 @@ include_once('db_conn.php');
       <!-- Enter year -->
       <label>Choose the Day:</label>
       <input name="chooseDay" id="chooseDay" type="number" min="1" max="31" class="form-control" placeholder="Enter the day as a number, like 14." required>
+      <small>You may use your arrow keys to increment the date.</small>
+      <br>
 
       <!-- Enter year -->
       <label>Enter the year:</label>
       <input name="chooseYear" id="chooseYear" type="number" class="form-control" placeholder="2019" min="2019" required>
+      <small>You may use your arrow keys to increment the year.</small>
+      <br>
 
       <?php
       if (!empty($_SESSION['user_name'])) {
@@ -279,9 +285,7 @@ include_once('db_conn.php');
 
         <label>Date of Delivery:</label>
         <p>', $selected_val, '-', $chooseDay, '-', $chooseYear, '</p>
-        </div>
 
-        <div id="right">
 
         <label>Gallons ordered:</label>
         <p>', $numGallons, ' gallons</p>
@@ -291,6 +295,10 @@ include_once('db_conn.php');
 
         <label>Transportation cost:</label>
         <p>$', $transportationCost, '</p>
+        </div>
+
+        <div id="right">
+
 
         <label>Seasonal Fluctuation Rate:</label>
         <p>$', $seasonalrate, '</p>
@@ -305,9 +313,9 @@ include_once('db_conn.php');
         ?>
 
       </div>
+      <br>
+      <br>
   </div>
-  </div>
-
 </body>
 
 </html>

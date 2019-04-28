@@ -75,7 +75,7 @@ include_once('db_conn.php');
     </div>
 </nav>
 
-  <main class="container">
+  <main class="container-fluid" id="fuelhist">
 
   <?php
     $uname = $_SESSION['user_name'];
@@ -102,7 +102,10 @@ include_once('db_conn.php');
                     <th scope='col'>State</th>
                     <th scope='col'>Zip</th>
                     <th scope='col'>Delivery Date</th>
-                    <th scope='col'># of Gallons</th>
+                    <th scope='col'>Gallons ordered</th>
+                    <th scope='col'>Transportation Cost</th>
+                    <th scope='col'>Discount</th>
+                    <th scope='col'>Seasonal Rate</th>
                     <th scope='col'>Price Per Gallon</th>
                     <th scope='col'>Total Amount</th>
                   </tr></thead><tbody>";
@@ -114,6 +117,9 @@ include_once('db_conn.php');
                     <td> ".$row["zip"]."</td>
                     <td> ".$row["c_month"]."  /   ".$row["c_day"]."   /   ".$row["c_year"]."</td>
                     <td> ".$row["num_gallons"]. " gallons </td>
+                    <td> $".$row["trans_cost"]." </td>
+                    <td> $".$row["discount"]." </td>
+                    <td> $".$row["seasonalrate"]." </td>
                     <td> $".$row["price_per_gallon"]." </td>
                     <td> $".$row["total_price"]."</td>
                   </tr>";
