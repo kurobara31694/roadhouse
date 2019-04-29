@@ -214,9 +214,12 @@ error_reporting(0);
 
       <h1> Hello,
         <?php
-
-        echo $fullName;
-        ?>.
+          if (!empty($_SESSION['user_name'])) {
+            echo $fullName;
+          } else {
+            echo 'Guest';
+          }
+        ?>!
       </h1>
       <h3>Order fuel below</h3>
 
@@ -259,13 +262,13 @@ error_reporting(0);
       <?php
       if (!empty($_SESSION['user_name'])) {
         ?>
+        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Get Price" />
         <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Submit Order </button>
-        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Submit" />
       <?php
     } else {
       ?>
-        <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Calculate </button>
-        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Submit" disabled/>
+        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Get Price" disabled/>
+        <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Submit Order </button>
         <small class="text-danger">Please login</small>
       <?php
     }
