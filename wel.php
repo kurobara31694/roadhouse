@@ -1,5 +1,7 @@
 <?php
 include_once('db_conn.php');
+// Turn off all error reporting
+error_reporting(0);
 ?>
 <!DOCTYPE html>
 <!-- Main Sign In Page -->
@@ -15,6 +17,9 @@ include_once('db_conn.php');
 
   <!-- Our stylesheet -->
   <link rel="stylesheet" href="resource/styles.css">
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/submit.js"></script>
 
   <title>HOME PAGE</title>
 
@@ -191,21 +196,22 @@ include_once('db_conn.php');
   $query3 = "INSERT INTO fuelcalc (num_gallons, c_month, c_day, c_year, price_per_gallon, trans_cost, discount, seasonalrate, GRF, total_price, cust_user_id) VALUES ('$numGallons', '$chooseMonth', '$chooseDay', '$chooseYear', '$pricePerGallon', '$transportationCost', '$discount', '$seasonalrate', '$GRF', '$totalPrice', '$userID')";
 
   if ($uname == true) {
-    # code...
-    if (empty(!$numGallons) || !empty($chooseMonth) || !empty($chooseDay) || !empty($chooseYear)) {
-      $result3 = $dbconn->query($query3);
-    }
-    if ($result3 == true) {
+            # code...
+            if (empty(!$numGallons) || !empty($chooseMonth) || !empty($chooseDay) || !empty($chooseYear)) {
+              $result3 = $dbconn->query($query3);
+            }
+            if ($result3 == true) {
 
-      echo "";
-    }
-  }
+              echo "";
+            }
+          }
 
   ?>
   <!-- Beginning of Fuel Calculator -->
   <div class="container-fluid" id="fuelcalc">
 
-    <form method="post" action="#" class="form-group">
+  <form method="post" action="#" class="form-group">
+
       <h1> Hello,
         <?php
 
@@ -227,7 +233,7 @@ include_once('db_conn.php');
       $MonthArray = array("1" => "January", "2" => "February", "3" => "March", "4" => "April", "5" => "May", "6" => "June", "7" => "July", "8" => "August", "9" => "September", "10" => "October", "11" => "November", "12" => "December");
       ?>
 
-      <select name="chooseMonth" class="form-control" required>
+      <select name="chooseMonth" class="form-control" id="chooseMonth" required>
         <option value="">Select Month</option>
         <?php
         foreach ($MonthArray as $monthNum => $chooseMonth) {
@@ -254,20 +260,25 @@ include_once('db_conn.php');
       if (!empty($_SESSION['user_name'])) {
         ?>
         <button class="btn btn-success" name="calculate" id="calculate" type="Submit">Submit Order </button>
-
+        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Submit" />
       <?php
     } else {
       ?>
         <button class="btn btn-success" name="calculate" id="calculate" type="Submit" disabled>Calculate </button>
+        <input type="button" class="btn btn-warning" id="submitFormData" onclick="SubmitFormData();" value="Submit" disabled/>
         <small class="text-danger">Please login</small>
       <?php
     }
     ?>
+ <div id="results">
+   <!-- All data will display here  -->
+   </div>
 
 
       <div id="invoice">
 
         <?php
+
         $selected_val = $_POST["chooseMonth"];
         if (isset($_POST['calculate'])) {
           echo '
@@ -309,10 +320,52 @@ include_once('db_conn.php');
         <label>Total Price:</label>
         <h3>$', $totalPrice, '</h3>
         </div>';
+
+
         }
         ?>
 
       </div>
+
+    <script>
+  
+
+  function SubmitFormData() {
+    
+
+
+    var numGallons = $("#numGallons").val();
+    var chooseMonth = $( "#chooseMonth option:selected" ).val();
+    var chooseDay = $("#chooseDay").val();
+    var chooseYear = $("#chooseYear").val();
+    var address  = "<?php echo $address; ?>";
+    var discount = "<?php echo $discount; ?>";
+    var transportationCost = "<?php echo $transportationCost; ?>";
+    var seasonalrate = "<?php echo $seasonalrate; ?>";
+    var pricePerGallon = "<?php echo $pricePerGallon; ?>";
+    var stateName = "<?php echo $stateName; ?>";
+    var zipCode = "<?php echo $zipCode; ?>";
+
+
+    $.post("submit.php", {numGallons: numGallons,
+                          chooseMonth: chooseMonth,
+                          chooseDay: chooseDay, 
+                          chooseYear: chooseYear, 
+                          address: address,
+                          discount: discount,
+                          transportationCost: transportationCost,
+                          seasonalrate: seasonalrate,
+                          pricePerGallon: pricePerGallon,
+                          stateName: stateName,
+                          zipCode: zipCode
+    },
+    function(data) {
+	 $('#results').html(data);
+    });
+  }
+    </script>
+  
+      
       <br>
       <br>
   </div>

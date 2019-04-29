@@ -22,10 +22,6 @@ h1 {
     width: 60%;
 }
 
-input,
-button {
-    font-size: 1.5em;
-}
 
 a {
     font-weight: bold;
@@ -65,10 +61,6 @@ width: 60%;
     padding-left: 100px;
 }
 
-
-#fuelcalc input, #fuelcalc select {
-    width: 60%;
-    }
 
 #login-section {
     width: 100%;
@@ -121,11 +113,6 @@ width: 60%;
 
 }
 
-#fuelcalc .btn-success {
-    margin-top: 25px;
-    width: 60%;
-    font-size: 24px;
-}
 
 /* Invoice styling */
 
