@@ -5,7 +5,7 @@ session_start();
 $username = "";
 
 $password = "";
-$fullname="";
+$fullName="";
 $address1="";
 $city="";
 $state="";
@@ -96,12 +96,12 @@ if (isset($_POST['login_user'])) {
 }
 //if we want somebody to be able to register thier information
 if (isset($_POST['register'])) {
-  $fullname = mysqli_real_escape_string($dbconn, $_POST['fullname']);
+  $fullName = mysqli_real_escape_string($dbconn, $_POST['fullname']);
   $address1 = mysqli_real_escape_string($dbconn, $_POST['address1']);
   $city = mysqli_real_escape_string($dbconn, $_POST['city']);
   $state = mysqli_real_escape_string($dbconn, $_POST['state']);
   $zipcode = mysqli_real_escape_string($dbconn, $_POST['zipcode']);
-  if (empty($fullname)) {
+  if (empty($fullName)) {
   	array_push($error, "name is required");
   }
   if (empty($city)) {
@@ -129,7 +129,7 @@ if (isset($_POST['register'])) {
     }
     	if ($row_cnt == 1) {
   	  $_SESSION['user_name'] = $username;
-        $query = " UPDATE log SET full_name='$fullname',
+        $query = " UPDATE log SET full_name='$fullName',
         address='$address1',city='$city',state='$state'
         , zip= '$zipcode'  
         WHERE user_name= '$username'";
