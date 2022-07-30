@@ -72,7 +72,7 @@ function test_input($data) {
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <!-- Section that takes them to sign up -->
-      <a href="">Don't have an accout? Sign Up!</a>
+      <a href="">Don't have an account? Sign Up!</a>
     </div>
 
   </div>
